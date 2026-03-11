@@ -1042,56 +1042,79 @@ export default function App() {
 
           {/* ── RESULTS ────────────────────────────────────────────────── */}
             {step === "results" && (
-              <div className="results-layout fade-up">
-                <div>
-                  <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "#999", marginBottom: 36, textTransform: "uppercase" }}>
+              <div className="fade-up" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "72px 0 88px", minHeight: "calc(100vh - 82px)" }}>
+                <h2 style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "clamp(11px, 1.4vw, 13px)",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#aaa",
+                  marginBottom: 36,
+                  textAlign: "center",
+                }}>
+                  Your style, mapped.
+                </h2>
+
+                {/* Share card preview */}
+                <div style={{
+                  background: "#0a0a0a",
+                  border: "1px solid #2e2e2e",
+                  borderRadius: 16,
+                  width: "100%",
+                  maxWidth: 280,
+                  aspectRatio: "9 / 16",
+                  padding: "20px 20px 16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginBottom: 28,
+                  flexShrink: 0,
+                  overflow: "hidden",
+                }}>
+                  <span style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    fontSize: 18,
+                    letterSpacing: "-0.02em",
+                    marginBottom: 4,
+                  }}>taste.</span>
+                  <p style={{ fontSize: 8, color: "#aaa", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 10 }}>
                     your style is
                   </p>
                   {styleWords.map((word, i) => (
-                    <div
-                      key={word}
-                      className="word-reveal"
-                      style={{
-                        animationDelay: `${i * 0.22}s`,
-                        fontFamily: "'Playfair Display', serif",
-                        fontStyle: "italic",
-                        fontWeight: 400,
-                        fontSize: "clamp(38px, 5.5vw, 60px)",
-                        lineHeight: 1.1,
-                        letterSpacing: "-0.02em",
-                      }}
-                    >
+                    <div key={word} style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontStyle: "italic",
+                      fontWeight: 400,
+                      fontSize: [30, 26, 22][i],
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.02em",
+                    }}>
                       {word}
                     </div>
                   ))}
-
-                  <div style={{ marginTop: 52 }}>
-                    <p style={{ fontSize: 11, letterSpacing: "0.12em", color: "#aaa", marginBottom: 10, textTransform: "uppercase" }}>
-                      you're on the list.
-                    </p>
-                    <p style={{ fontSize: 11, color: "#555", letterSpacing: "0.04em", lineHeight: 1.6, marginBottom: 28 }}>
-                      We'll be in touch at {email}.
-                    </p>
-                    <button
-                      onClick={handleShare}
-                      disabled={sharing}
-                      style={{ ...btnStyle, opacity: sharing ? 0.5 : 1 }}
-                    >
-                      {sharing ? "saving..." : "share →"}
-                    </button>
-                    <button
-                      onClick={() => setStep("home")}
-                      style={{ background: "none", border: "none", color: "#555", fontSize: 11, letterSpacing: "0.08em", marginTop: 20, padding: 0, cursor: "pointer", display: "block" }}
-                    >
-                      ← Back to home
-                    </button>
+                  <div style={{ flex: 1, marginTop: 12, minHeight: 0 }}>
+                    <Constellation highlightedWords={styleWords} relevantWords={relevantWords} />
                   </div>
                 </div>
 
-                <div className="results-right">
-                  <div className="constellation-wrap">
-                    <Constellation highlightedWords={styleWords} relevantWords={relevantWords} />
-                  </div>
+                {/* Buttons */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, width: "100%", maxWidth: 280 }}>
+                  <button
+                    onClick={handleShare}
+                    disabled={sharing}
+                    style={{ ...btnStyle, width: "100%", textAlign: "center", opacity: sharing ? 0.5 : 1 }}
+                  >
+                    {sharing ? "saving..." : "share"}
+                  </button>
+                  <button
+                    onClick={() => setStep("home")}
+                    style={{ ...ghostBtnStyle, width: "100%", textAlign: "center" }}
+                  >
+                    back to home
+                  </button>
                 </div>
               </div>
             )}
