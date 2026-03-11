@@ -896,7 +896,7 @@ export default function App() {
                   </h1>
 
                   <p style={{ fontSize: 13, color: "#888", lineHeight: 1.8, marginBottom: 44, maxWidth: 480, letterSpacing: "0.02em", opacity: heroReady ? 1 : 0, animation: heroReady ? "fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) 0s both" : "none" }}>
-                    a platform where you can connect with others who share your style preferences (your covey) to get personalized style inspiration and recommendations
+                    we connect you with people who share your style preferences so that you don't have to spend hours scrolling to find style inspo and recommendations that you actually like
                   </p>
                   <button onClick={() => setStep("style")} style={{ ...btnStyle, opacity: heroReady ? 1 : 0, animation: heroReady ? "fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) 0.18s both" : "none" }}>
                     Discover your aesthetic →
